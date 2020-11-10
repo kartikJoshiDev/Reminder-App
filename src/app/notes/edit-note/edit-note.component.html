@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-sm-12">
+        <form [formGroup]="noteForm" (ngSubmit)="formSubmit()">
+            <div class="form-group">
+              <h3 class="text-center">Edit Note</h3>
+              <label for="exampleInputEmail1">Subject</label>
+              <input type="text" formControlName="subject" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Subject Here">
+              <div *ngIf="subject.invalid && (subject.touched || isSubmitted) ">
+                  <div *ngIf="subject.hasError('required')" class="invalid invalid-feedback">
+                    Subject is been required*.
+                  </div>
+                  <div *ngIf="subject.hasError('maxlength')" class="invalid invalid-feedback">
+                    Limit is only of 30 character max.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Description</label>
+              <textarea type="text" formControlName="description" rows="6" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Note Here"></textarea>
+              <div *ngIf="description.invalid && (description.touched || isSubmitted)">
+                <div *ngIf="description.hasError('required')" class="invalid invalid-feedback">
+                  Description is been required*.
+                </div>
+                <div *ngIf="description.hasError('maxlength')" class="invalid invalid-feedback">
+                  Limit is only of 200 character max.
+                </div>
+            </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-success" style="float:right" (click)="cancelBack()" >Cancel</button>
+          </form>
+          <hr />
+    </div>
+
+</div>

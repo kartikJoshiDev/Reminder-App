@@ -1,0 +1,26 @@
+
+
+<app-add-note></app-add-note>
+
+<div *ngIf="!noRecord">
+  <app-filter-box [searchSubject]="searchNote" (filterValue)="filterNote($event)"></app-filter-box>
+</div>
+
+<div *ngIf="noteList.length > 0;else noDataFound">
+  <div *ngFor="let note of noteList" class="row bg-light">
+      <div class="col-10 mt-2" style="word-wrap: break-word;" (click)="editNote(note)">
+        <h3>{{ note?.subject }}</h3>
+        <p>{{ note?.description }}</p>
+      </div>
+      <div class="col-2 mt-2">
+        <button class="text-danger" (click)="removeNote(note)" style="background-color: #ffffff; border:0px;">X</button>
+      </div>
+  </div>
+</div>
+<ng-template #noDataFound>
+  <div class="row bg-light">
+    <div class="col-12 text-center">
+      <h6>No Reminders Found</h6>
+    </div>
+  </div>
+</ng-template>
